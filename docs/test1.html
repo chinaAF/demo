@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Test 1</h1>
+  <p id="p1"></p>
+
+  <script>
+    const appScheme = 'blofin://';
+    const timeout = 2000;
+    const start = Date.now();
+
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = appScheme;
+
+    document.body.appendChild(iframe);
+
+    setTimeout(function () {
+      document.body.removeChild(iframe);
+      if (Date.now() - start < timeout + 100) {
+        console.log('未安装');
+        document.querySelector('#p1').innerText = '未安装';
+      } else {
+        console.log('已安装');
+        document.querySelector('#p1').innerText = '已安装';
+      }
+    }, timeout);
+  </script>
+</body>
+</html>
